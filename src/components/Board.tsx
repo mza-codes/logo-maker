@@ -5,12 +5,37 @@ import { selecteditem } from "../atoms";
 import { fonts, sizes, textSizes, weight } from "../options";
 import Select from "./Select";
 import { ColorPicker, useColor } from "react-color-palette";
+import html2canvas from "html2canvas";
 
 const controls = `bg-gray-800 w-64 rounded-lg absolute py-3 bottom-2 hoverEffects flex flex-col items-center justify-center gap-2`;
 
 function togglePalette() {
   document.querySelector(".colorPick")?.classList.toggle("hoverEffects");
+}
+
+const handleResult = () => {
+  const resultCanvas: any = document.querySelector("#canvas");
+
+  html2canvas(resultCanvas, {
+    backgroundColor: "transparent",
+    width: 1000,
+    height: 1000,
+  }).then((canvas) => {
+    const myImage = canvas.toDataURL();
+    downloadURI(myImage, `${Date.now()}.png`);
+  });
 };
+
+function downloadURI(uri: string, name: string) {
+  const link = document.createElement("a");
+  link.download = name;
+  link.href = uri;
+  document.body.appendChild(link);
+  link.click();
+  //after creating link you should delete dynamic link
+  //clearDynamicLink(link);
+  document.body.removeChild(link);
+}
 
 function Board() {
   const icon = useAtom(selecteditem)[0];
@@ -32,17 +57,33 @@ function Board() {
   return (
     <section className="flex flex-col items-center justify-center">
       <div
-        className="p-3 bg-white min-h-[800px] w-[800px] max-h-[86vh]0 max-w-[80vw] flex-col flex items-center justify-center 
-      shadow-xl rounded-lg hover:shadow-2xl relative lg:max-w-[50vw]"
+        id="canvas0"
+        className="p-3 bg-white min-h-[800px] w-[800px] max-w-[80vw]0 flex-col flex items-center justify-center 
+      shadow-xl rounded-lg hover:shadow-2xl relative lg:max-w-[50vw]0"
       >
-        <Icon icon={icon} width={`${iconSize}px`} color={color?.hex} />
-
-        <h3
-          style={{ color: matchRef.current ? color.hex : fontColor }}
-          className={`truncate max-w-[750px] py-2 ${font} ${size} ${fw}`}
+        <div
+          id="canvas"
+          className="flex-col flex items-center justify-center gap-2 p-3 "
         >
-          {name}
-        </h3>
+          <Icon
+            icon={icon}
+            width={`${iconSize}px`}
+            height={`${iconSize}px`}
+            color={color?.hex}
+            className="z-50 p-3"
+            // mode="bg" works fine but black color only
+            mode="svg"
+
+          />
+
+          <h3
+            style={{ color: matchRef.current ? color.hex : fontColor }}
+            className={`truncate0 max-w-[750px]0 z-50  ${font} ${size} ${fw}`}
+          >
+            {name}
+          </h3>
+        </div>
+
         <div className={`${controls} right-1`}>
           <Select
             handleChange={(e: any) => setFont(e.target.value)}
@@ -92,7 +133,11 @@ function Board() {
           className="text-green-800 hover:text-lime-700 cursor-pointer"
           onClick={togglePalette}
         />
-        <button onClick={handleFontColor} className="p-3 flex-row flex items-center" title="Match Color With Logo">
+        <button
+          onClick={handleFontColor}
+          className="p-3 flex-row flex items-center"
+          title="Match Color With Logo"
+        >
           {matchRef.current ? (
             <Icon
               icon={"mdi:checkbox-multiple-blank-outline"}
@@ -107,6 +152,12 @@ function Board() {
             />
           )}
         </button>
+        <Icon
+          onClick={handleResult}
+          icon={"material-symbols:cloud-download-rounded"}
+          width={36}
+          className="text-fuchsia-700 hover:text-violet-600 cursor-pointer"
+        />
       </div>
       <div className="p-3 colorPick">
         <ColorPicker

@@ -16,3 +16,9 @@ export const fetchQuery = (query: string) => axios.get(`https://api.iconify.desi
     //     queryKey: ["icon-search"],
     //     // queryFn: () => axios.get(`https://api.iconify.design/search?query=${query}`).then(({ data }) => data),
     // });
+let i = 1;
+export function* genId() {
+    while (true) {
+        yield i++
+    };
+};
