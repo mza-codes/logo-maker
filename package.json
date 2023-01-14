@@ -10,7 +10,10 @@
     "deploy": "npx tailwindcss build src/index.css -o build.css && yarn build"
   },
   "dependencies": {
+    "@tanstack/react-query": "^4.22.0",
+    "jotai": "^1.13.0",
     "react": "^18.2.0",
+    "react-color-palette": "^6.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
