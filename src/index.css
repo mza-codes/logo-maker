@@ -6,6 +6,25 @@
 
 *{
   font-family: "Poppins","cursive";
+  /* overflow: hidden; */
+}
+
+body ::-webkit-scrollbar{
+  display: none;
+}
+
+/* center{
+  max-width: 94vw;
+} */
+
+.hoverEffects {
+  transition: all 900ms ease;
+  opacity: 0;
+  cursor: default;
+}
+
+.hoverEffects:hover{
+  opacity: 1;
 }
 
 /* ellipsis loader */
