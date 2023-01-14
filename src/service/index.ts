@@ -11,14 +11,3 @@ export async function fetchData() {
 };
 
 export const fetchQuery = (query: string) => axios.get(`https://api.iconify.design/search?query=${query}`).then(({ data }) => data);
-
-//  // const { isLoading, error, data } = useQuery({
-    //     queryKey: ["icon-search"],
-    //     // queryFn: () => axios.get(`https://api.iconify.design/search?query=${query}`).then(({ data }) => data),
-    // });
-let i = 1;
-export function* genId() {
-    while (true) {
-        yield i++
-    };
-};

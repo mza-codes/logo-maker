@@ -1,12 +1,22 @@
 import { Icon } from "@iconify/react";
 
-function Iconify({ size, color, icon, w, h, p, classes, ...props }: iconProps) {
-    return <Icon icon={icon ?? "mdi-light:home"} color={color ?? ""} width={size ?? w ?? 36} height={size ?? h ?? 36} className={`${p ? "cursor-pointer" : ""} ${classes ?? ""}`} {...props} />;
+function Iconify({ size, color, icon, w, h, p, classes, handleClick, ...props }: iconProps) {
+    return (
+        <Icon
+            onClick={handleClick}
+            icon={icon ?? "mdi-light:home"}
+            color={color ?? ""}
+            width={size ?? w ?? 36}
+            height={size ?? h ?? 36}
+            className={`${p ? "cursor-pointer" : ""} ${classes ?? ""}`}
+            {...props}
+        />
+    );
 }
 
 export default Iconify;
 
-type iconProps = {
+export declare type iconProps = {
     size?: number;
     color?: string;
     icon?: string;
@@ -15,7 +25,9 @@ type iconProps = {
     classes?: string;
     p?: 1 | 0;
     props?: any;
+    handleClick?: () => void;
 };
+
 /**  Props: inline, boolean toggles inline or block mode.
 width, string | number icon width.
 height, string | number icon height.

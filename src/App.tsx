@@ -4,11 +4,11 @@ import { queryClient } from "./service/tanstackQuery";
 import "react-color-palette/lib/css/styles.css";
 
 function App() {
-  return (
-    <QueryClientProvider client={queryClient}>
-      <Home />
-    </QueryClientProvider>
-  );
+    return (
+        <QueryClientProvider client={queryClient}>
+            <Home />
+        </QueryClientProvider>
+    );
 }
 
 export default App;
