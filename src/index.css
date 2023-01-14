@@ -4,6 +4,10 @@
 @tailwind components;
 @tailwind utilities;
 
+*{
+  font-family: "Poppins","cursive";
+}
+
 /* ellipsis loader */
 .lds-ellipsis {
   display: inline-block;
