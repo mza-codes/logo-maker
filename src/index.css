@@ -4,18 +4,9 @@
 @tailwind components;
 @tailwind utilities;
 
-*{
-  font-family: "Poppins","cursive";
-  /* overflow: hidden; */
+* {
+  font-family: "Poppins", "cursive";
 }
-
-body ::-webkit-scrollbar{
-  display: none;
-}
-
-/* center{
-  max-width: 94vw;
-} */
 
 .hoverEffects {
   transition: all 900ms ease;
@@ -23,7 +14,7 @@ body ::-webkit-scrollbar{
   cursor: default;
 }
 
-.hoverEffects:hover{
+.hoverEffects:hover {
   opacity: 1;
 }
 
