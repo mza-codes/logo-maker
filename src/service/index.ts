@@ -10,4 +10,7 @@ export async function fetchData() {
     };
 };
 
-export const fetchQuery = (query: string) => axios.get(`https://api.iconify.design/search?query=${query}`).then(({ data }) => data);
+export const fetchQuery = (query: string) => {
+    console.log("Quer for: ", query);
+    return axios.get(`https://api.iconify.design/search?query=${query}`).then(({ data }) => data)
+};
