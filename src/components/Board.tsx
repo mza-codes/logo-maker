@@ -69,7 +69,7 @@ function Board() {
 
                     <h3
                         style={{ color: matchRef.current ? color.hex : fontColor }}
-                        className={`truncate0 max-w-[750px]0 z-50  ${font} ${size} ${fw}`}>
+                        className={`truncate0 max-w-[750px]0 z-50 ${font} ${size} ${fw}`}>
                         {name}
                     </h3>
                 </div>

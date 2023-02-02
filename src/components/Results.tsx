@@ -52,7 +52,7 @@ function Results() {
                     <div
                         key={i}
                         className="w-20 h-20 p-1 aspect-square bg-amber-200 flex items-center justify-center hover:scale-110 
-            transition-transform hover:bg-gray-50 cursor-pointer">
+                            transition-transform hover:bg-gray-50 cursor-pointer">
                         <Icon icon={res} width={"50px"} onClick={() => transport(res)} />
                     </div>
                 ))}
