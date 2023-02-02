@@ -6,11 +6,12 @@ import { qAtom, selecteditem } from "../atoms";
 import { fetchQuery } from "../service";
 import { queryClient } from "../service/tanstackQuery";
 import Loader from "./Loader";
+const suggestions = ["react", "java", "tree", "icon", "cookie"] as const;
 
 function Results() {
-    const query = useAtom(qAtom)[0];
+    const [query, setQuery] = useAtom(qAtom);
     const transport = useAtom(selecteditem)[1];
-
+    let v = Math.floor(Math.random() * suggestions.length + 1);
     const {
         data,
         mutate: search,
@@ -26,7 +27,8 @@ function Results() {
 
     useEffect(() => {
         const controller = new AbortController();
-        search(query);
+        if (query?.length > 1) search(query);
+        else setQuery(suggestions[v]);
         return () => controller?.abort();
     }, [query]);
 
