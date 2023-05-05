@@ -1,6 +1,6 @@
 import { Icon } from "@iconify/react";
 import { useAtom } from "jotai";
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { qAtom } from "../atoms";
 
 function InputField() {
@@ -11,7 +11,7 @@ function InputField() {
         <div className="flex flex-col relative max-w-[600px]">
             <input
                 type="text"
-                onKeyPress={(e:React.KeyboardEvent) => e.key === "Enter" && setQuery(searchRef.current?.value)}
+                onKeyDown={(e) => e.key === "Enter" && setQuery(searchRef.current?.value)}
                 ref={searchRef}
                 placeholder="Enter Your Query"
                 id="q"

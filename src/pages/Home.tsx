@@ -1,5 +1,4 @@
-import Board from "../components/Board";
-import InputField from "../components/InputField";
+import Board from "../components/Board";import InputField from "../components/InputField";
 import Results from "../components/Results";
 import Title from "../components/Title";
 import Layout from "./Layout";

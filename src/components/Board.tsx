@@ -20,10 +20,22 @@ function Board() {
     const [color, setColor] = useColor("hex", "#00323f");
     const [iconSize, setIconSize] = useState("300");
     const [fontColor, setFontColor] = useState(color?.hex);
+    const canvasRef = useRef<HTMLCanvasElement>(null);
 
     const handleFontColor = () => {
-        setMatch((m) => !m);
-        match && setFontColor(color?.hex);
+        setMatch((m) => {
+            m && setFontColor(color?.hex);
+            return !m;
+        });
+    };
+
+    const downloadImg = () => {
+        let url = canvasRef.current?.toDataURL("image/png");
+        if (!url) return;
+        const link = document.createElement("a");
+        link.download = `${Date.now()}_mza.png`;
+        link.href = url;
+        link.click();
     };
 
     return (
@@ -32,7 +44,9 @@ function Board() {
                 id="canvas0"
                 className="p-3 bg-white min-h-[800px] w-[800px] max-w-[80vw]0 flex-col flex items-center justify-center 
                   shadow-xl rounded-lg hover:shadow-2xl relative lg:max-w-[50vw]0">
-                <div id="canvas" className="flex-col flex items-center justify-center gap-2 p-3 ">
+                <div
+                    id="canvas"
+                    className="flex-col flex items-center justify-center gap-2 p-3 ">
                     <Icon
                         icon={icon}
                         width={`${iconSize}px`}
@@ -50,24 +64,28 @@ function Board() {
                 </div>
 
                 <div className={`${controls} right-1`}>
-                    <Select color="#fff"
+                    <Select
+                        color="#fff"
                         handleChange={(e: any) => setFont(e.target.value)}
                         label="Font Style"
                         options={fonts}
                     />
-                    <Select color="#fff"
+                    <Select
+                        color="#fff"
                         handleChange={(e: any) => setSize(e.target.value)}
                         label="Font Size"
                         options={sizes}
                     />
-                    <Select color="#fff"
+                    <Select
+                        color="#fff"
                         handleChange={(e: any) => setFw(e.target.value)}
                         label="Font Weight"
                         options={weight}
                     />
                 </div>
                 <div className={`${controls} left-1`}>
-                    <Select color="#fff"
+                    <Select
+                        color="#fff"
                         handleChange={(e: any) => setIconSize(e.target.value)}
                         label="Logo Size"
                         options={textSizes}
@@ -93,7 +111,8 @@ function Board() {
             </div>
 
             <div className="flex flex-row gap-2 items-center justify-center">
-                <Select color="#000"
+                <Select
+                    color="#000"
                     handleChange={(e: any) => setIconSize(e.target.value)}
                     label="Logo Size"
                     options={textSizes}
@@ -132,7 +151,11 @@ function Board() {
                             color={"#720013"}
                         />
                     ) : (
-                        <Icon icon={"mdi:checkbox-multiple-marked"} width={33} color={"#810016"} />
+                        <Icon
+                            icon={"mdi:checkbox-multiple-marked"}
+                            width={33}
+                            color={"#810016"}
+                        />
                     )}
                 </button>
                 <Icon
@@ -163,7 +186,9 @@ function togglePalette() {
 }
 
 function handleResult() {
-    const resultCanvas: any = document.querySelector("#canvas");
+    const resultCanvas = document.getElementById("canvas");
+    if (!resultCanvas) return;
+
     html2canvas(resultCanvas, {
         backgroundColor: "transparent",
         width: resultCanvas.clientWidth + 150 ?? 1000,

@@ -17,7 +17,7 @@
     "useTabs": false,
     "vueIndentScriptAndStyle": false,
     "rangeStart": 0,
-    "printWidth": 100,
+    "printWidth": 90,
     "tabWidth": 4,
     "endOfLine": "cr"
   }
